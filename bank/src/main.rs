@@ -15,10 +15,6 @@ impl Account {
     }
 }
 
-fn print_account(account: Account) {
-    println!("{:#?}", account);
-}
-
 #[derive(Debug)]
 struct Bank {
     accounts: Vec<Account>,
@@ -28,18 +24,21 @@ impl Bank {
     fn new() -> Self {
         Bank { accounts: vec![] }
     }
+
+    fn add_account(&mut self, account: Account) {
+        self.accounts.push(account)
+    }
+}
+
+fn change_account(account: &mut Account) {
+    account.balance = 10;
 }
 
 fn main() {
-    let account = Account::new(1, String::from("John Doe"));
+    let mut bank = Bank::new();
+    let account = Account::new(1, String::from("me"));
 
-    let account_ref = &account;
-    let account_ref2 = &account;
+    bank.add_account(account);
 
-
-    print_account(account_ref);
-    print_account(&account_ref2);
-    print_account(&account);
-
-    println!("{:#?}", account)
+    println!("{:#?}", bank)
 }
