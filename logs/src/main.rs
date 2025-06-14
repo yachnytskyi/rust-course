@@ -19,7 +19,7 @@ fn main() -> Result<(), Error> {
 
     let text = fs::read_to_string("logs.txt")?;
     let error_logs = extract_errors(text.as_str());
-    fs::write("./as/errors.txt", error_logs.join("\n"))?;
+    fs::write("errors.txt", error_logs.join("\n"))?;
 
     Ok(())
 
